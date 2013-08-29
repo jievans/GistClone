@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  
+
   before_filter :redirect_logged_in_user, :only => [:new]
 
   def new
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.verify_password(params[:user][:password])
       login_user(@user)
-      redirect_to @user
+      redirect_to roots_url
     else
       flash[:errors] ||= []
       flash[:errors] << "Incorrect username or password"

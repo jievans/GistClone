@@ -7,7 +7,9 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 
-group :development do 
+gem 'backbone-on-rails'
+
+group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'annotate'
