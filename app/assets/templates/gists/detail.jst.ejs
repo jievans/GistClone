@@ -1,0 +1,5 @@
+
+<li> <%= gist.escape("title") %>
+<button data-gistID="<%= gist.escape('id') %>">
+<%= gist.escape("favorite") === "false" ? "Favorite" : "Unfavorite" %>
+</button>

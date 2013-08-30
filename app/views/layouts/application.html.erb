@@ -16,9 +16,11 @@
 
 
   <div>
+    <% if current_user %>
     <%= button_to "Logout", session_path, :method => "delete" %>
-    Current User: <%= current_user %>
+    Current User: <%= current_user.username %><br />
     Session Token: <%= session[:session_token] %>
+    <% end %>
   </div>
 </body>
 </html>
