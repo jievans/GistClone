@@ -1,6 +1,12 @@
-</br>
-<label for="gist_gistfiles__name">Gistfile Name</label>
-<input name="gist[gistfiles][0][name]" id="gist_gistfiles_name">
 
-<label for="gist_gistfiles_body">Gistfile Body</label>
-<textarea name="gist[gistfiles][0][body]" id="gist_gistfiles__body"> </textarea>
+<div class="gistfile-form">
+<label for="gist_gistfiles_name<%=formNum%>">Gistfile Name</label>
+<input name="gist[gistfiles][<%=formNum%>][name]"
+id="gist_gistfiles_name<%=formNum%>">
+
+<label for="gist_gistfiles_body<%=formNum%>">Gistfile Body</label>
+<textarea name="gist[gistfiles][<%=formNum%>][body]"
+id="gist_gistfiles_body<%=formNum%>"> </textarea>
+</br>
+<button class="add-gistfile-form">Add Another Gistfile</button>
+<div>

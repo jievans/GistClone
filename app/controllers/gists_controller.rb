@@ -11,6 +11,8 @@ class GistsController < ApplicationController
 
   def create
     params[:gist][:user_id] = current_user.id
+    #figure out why this is necessary
+    params[:gist][:gistfiles_attributes] = params[:gistfiles]
     p params
     @gist = Gist.create!(params[:gist])
     render "gists/show"

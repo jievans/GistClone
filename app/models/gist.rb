@@ -1,5 +1,5 @@
 class Gist < ActiveRecord::Base
-  attr_accessible :title, :user_id
+  attr_accessible :title, :user_id, :gistfiles_attributes
 
   has_many :favorites, :class_name => "Favorite", :foreign_key => :gist_id,
   :primary_key => :id

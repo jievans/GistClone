@@ -6,18 +6,20 @@ SessionsTemplate.Views.GistsIndexView = Backbone.View.extend({
     this.listenTo(this.collection, 'change', renderCallback);
   //  this.listenTo(this.collection, 'sync', renderCallback);
     this.listenTo(this.collection, 'sync', renderCallback);
+    this.gistfileCounter = 0;
   },
 
   events: {
-    "click button" : "toggleFavorite",
-    "submit form" : "submitGist"
+    "click .favoriting" : "toggleFavorite",
+    'click input[type="submit"]' : "submitGist",
+    "click .add-gistfile-form" : "addGistfileForm",
   },
 
   render: function(){
     console.log("rendering");
     var $ul = $("<ul>");
     var $form = $(JST["gists/form"]());
-    var $fileForm = JST["gistfiles/form_part"]();
+    var $fileForm = JST["gistfiles/form_part"]({formNum: this.gistfileCounter});
     $form.find("input[type='text']").last().after($fileForm);
     this.collection.each(function(gist){
       var renderedContent = JST["gists/detail"]({gist: gist})
@@ -59,12 +61,21 @@ SessionsTemplate.Views.GistsIndexView = Backbone.View.extend({
 
   submitGist: function(event){
     event.preventDefault();
-    var data = $(event.target).serializeJSON();
+    $form = $(event.target).parent();
+    var data = $form.serializeJSON();
+    console.log("submit being called");
     // var newGist = new SessionsTemplate.Models.Gist(data["gist"]).save();
     this.collection.create(data["gist"]);
 
     // var model = this.collection.at(this.collection.length - 1);
   //   model.set("favorite", "false");
   //   console.log(model);
+  },
+
+  addGistfileForm: function(event){
+    event.preventDefault();
+    this.gistfileCounter++;
+    var $fileForm = JST["gistfiles/form_part"]({formNum: this.gistfileCounter});
+    this.$el.find(".gistfile-form").last().after($fileForm);
   },
 });
