@@ -35,7 +35,6 @@ SessionsTemplate.Views.GistsIndexView = Backbone.View.extend({
     var gistID = $(event.target).attr('data-gistID');
     // alert($(event.target).attr('data-gistID'));
     var model = this.collection.get({id: gistID});
-    console.log(model.get('favorite'));
     if(model.get('favorite') == false)
     $.ajax({
       type: "POST",
@@ -43,7 +42,7 @@ SessionsTemplate.Views.GistsIndexView = Backbone.View.extend({
       success: function(){
         model.fetch({
           success: function(model){
-            console.log(model);
+            console.log("model successfully fetched.");
           },
         });
       },
@@ -65,7 +64,7 @@ SessionsTemplate.Views.GistsIndexView = Backbone.View.extend({
     var data = $form.serializeJSON();
     console.log("submit being called");
     // var newGist = new SessionsTemplate.Models.Gist(data["gist"]).save();
-    this.collection.create(data["gist"]);
+    this.collection.create(data["gist"], {parse: true});
 
     // var model = this.collection.at(this.collection.length - 1);
   //   model.set("favorite", "false");

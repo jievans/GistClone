@@ -7,12 +7,14 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create!(:username => "Jack", :password => "password")
-User.create!(:username => "Debbie", :password => "password")
 Gist.create!(:title => "GE is great!", :user_id => 1)
-Favorite.create!(:user_id => 1, :gist_id => 1)
-Gist.create!(:title => "Cool Cool Cool!", :user_id => 2)
-Favorite.create!(:user_id => 1, :gist_id => 2)
 Gist.create!(:title => "GE is too cool!", :user_id => 1)
+Favorite.create!(:user_id => 1, :gist_id => 1)
+Favorite.create!(:user_id => 1, :gist_id => 2)
+
 
 Gistfile.create!(:name => "Sweet", :body => "the best gistfile",
                  :gist_id => 1)
+
+Tag.create!(:topic => "Capitalist propaganda", :gist_ids => [1])
+Tag.create!(:topic => "Hippie Language", :gist_ids => [2])

@@ -1,19 +1,26 @@
 SessionsTemplate.Models.Gist = Backbone.Model.extend({
 
-  initialize: function(options){
-    var collection = new SessionsTemplate
-                        .Collections.Gistfiles(options.gistfiles);
-    this.set("gistfiles", collection);
-  },
+  // initialize: function(attributes, options){
+    //     var collection = new SessionsTemplate
+    //                         .Collections.Gistfiles(attributes.gistfiles);
+    //
+    //     this.set("gistfiles", collection);
+    //   },
+
+  // initialize: function(){
+ //    // options = options || {};
+ //  //   options.parse = true;
+ //    // console.log(this.attributes);
+ //  },
 
   parse: function(data){
     data.gistfiles = new SessionsTemplate.Collections.Gistfiles(data.gistfiles);
+    data.tags = new SessionsTemplate.Collections.Tags(data.tags);
     return data;
   },
 
   toJSON: function(){
     var json = Backbone.Model.prototype.toJSON.call(this);
-    debugger;
     json.gistfiles = this.get("gistfiles").toJSON();
     delete json.favorite;
 
@@ -21,3 +28,5 @@ SessionsTemplate.Models.Gist = Backbone.Model.extend({
   },
 
 });
+
+////// TODO: incorporate Tags into toJSON, also into initialize

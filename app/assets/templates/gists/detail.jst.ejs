@@ -3,5 +3,12 @@
 <button class="favoriting" data-gistID="<%= gist.escape('id') %>">
 <%= gist.escape("favorite") === "false" ? "Favorite" : "Unfavorite" %>
 </button>
+<ul>
 
-<% console.log(gist) %>
+<% gist.get("gistfiles").each(function(gistfile){ %>
+  <li> <%= gistfile.escape("body") %>
+
+<% }) %>
+</ul>
+
+

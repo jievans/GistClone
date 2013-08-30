@@ -17,3 +17,8 @@ end
 child(:gistfiles) do
   attributes :body, :title, :gist_id, :id
 end
+
+child(:tags) do
+  attributes :topic, :id
+end
+

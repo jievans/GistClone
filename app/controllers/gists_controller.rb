@@ -1,6 +1,6 @@
 class GistsController < ApplicationController
   def index
-     @gists = current_user.gists.includes(:favorites, :gistfiles)
+     @gists = current_user.gists.includes(:favorites, :gistfiles, :tags)
     render "index.rabl"
   end
 

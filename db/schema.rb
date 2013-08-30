@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130830010916) do
+ActiveRecord::Schema.define(:version => 20130830174050) do
 
   create_table "favorites", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -34,6 +34,22 @@ ActiveRecord::Schema.define(:version => 20130830010916) do
   create_table "gists", :force => true do |t|
     t.string   "title"
     t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "gist_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "taggings", ["gist_id"], :name => "index_taggings_on_gist_id"
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+
+  create_table "tags", :force => true do |t|
+    t.string   "topic"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
