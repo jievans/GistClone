@@ -1,11 +1,18 @@
 class GistsController < ApplicationController
   def index
-     @gists = current_user.gists
+     @gists = current_user.gists.includes(:favorites, :gistfiles)
     render "index.rabl"
   end
 
   def show
     @gist = Gist.find(params[:id])
+    render "gists/show"
+  end
+
+  def create
+    params[:gist][:user_id] = current_user.id
+    p params
+    @gist = Gist.create!(params[:gist])
     render "gists/show"
   end
 

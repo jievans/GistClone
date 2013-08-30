@@ -13,3 +13,6 @@ Favorite.create!(:user_id => 1, :gist_id => 1)
 Gist.create!(:title => "Cool Cool Cool!", :user_id => 2)
 Favorite.create!(:user_id => 1, :gist_id => 2)
 Gist.create!(:title => "GE is too cool!", :user_id => 1)
+
+Gistfile.create!(:name => "Sweet", :body => "the best gistfile",
+                 :gist_id => 1)
