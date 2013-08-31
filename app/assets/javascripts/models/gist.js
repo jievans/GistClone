@@ -22,8 +22,11 @@ SessionsTemplate.Models.Gist = Backbone.Model.extend({
   toJSON: function(){
     var json = Backbone.Model.prototype.toJSON.call(this);
     json.gistfiles = this.get("gistfiles").toJSON();
+    if(!json.tag_ids){
+      json.tag_ids = this.get("tags").pluck("id");
+    }
     delete json.favorite;
-
+    delete json.tags;
     return json;
   },
 

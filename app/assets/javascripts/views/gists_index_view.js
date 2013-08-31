@@ -77,4 +77,5 @@ SessionsTemplate.Views.GistsIndexView = Backbone.View.extend({
     var $fileForm = JST["gistfiles/form_part"]({formNum: this.gistfileCounter});
     this.$el.find(".gistfile-form").last().after($fileForm);
   },
+
 });

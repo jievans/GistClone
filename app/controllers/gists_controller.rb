@@ -18,6 +18,12 @@ class GistsController < ApplicationController
     render "gists/show"
   end
 
+  def update
+   @gist = Gist.find(params[:id])
+   @gist.update_attributes(params[:gist])
+   render "show.rabl"
+  end
+
   def make_favorite
     current_user.favorites.create!(:gist_id => params[:id])
     render :text => "Made Favorite"

@@ -1,23 +1,33 @@
-
- <li> <a href="#/gists/<%= gist.escape('id')%>"><%= gist.escape("title") %></a>
+<a href="#/gists/<%= gist.escape('id')%>"><%= gist.escape("title") %></a>
 
 <button class="favoriting" data-gistID="<%= gist.escape('id') %>">
 <%= gist.escape("favorite") === "false" ? "Favorite" : "Unfavorite" %>
 </button>
 
-<ul>
+<h3>Gistfiles</h3>
 
+<ul>
   <% gist.get("gistfiles").each(function(gistfile){ %>
     <li> <%= gistfile.escape("body") %>
   <% }) %>
+</ul>
 
-  <ul>
+<h3>Tags</h3>
+<ul>
     <% gist.get("tags").each(function(tag){ %>
     <li> <%= tag.escape("topic") %>
     <% }) %>
-  </ul>
-
 </ul>
 
+<form>
 
+<% allTags.each(function(tag){ %>
+  <input type="checkbox" name="tag_ids[]" value="<%= tag.get('id')%>" <%= tag.checkedVal%> >
+  <%= tag.get('topic')%><br />
 
+<% }); %>
+
+<button class="tag">
+Tag This
+</button>
+</form>
