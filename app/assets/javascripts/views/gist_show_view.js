@@ -5,6 +5,7 @@ SessionsTemplate.Views.GistShowView = Backbone.View.extend({
   },
 
   render: function(){
+    console.log("We are rendering again.");
     var theModel = this.model;
     var strappedTags = JSON.parse($('script[type="javascript/json"]').html());
     var tagsCollection = new SessionsTemplate.Collections.Tags(strappedTags);
@@ -27,17 +28,18 @@ SessionsTemplate.Views.GistShowView = Backbone.View.extend({
   },
 
   editTags: function(event){
+    event.preventDefault();
     var ids = $(event.target).parent().serializeJSON().tag_ids;
-    debugger
     this.model.set("tag_ids", ids);
     var that = this;
-    this.model.save({
+    this.model.save(null, {
       success: function(model){
-        model.fetch({
-          success: function(){
-            that.render();
-          }
-        });
+       that.render();
+        // model.fetch({
+//           success: function(){
+//             that.render();
+//           }
+//         });
       },
     });
   },
